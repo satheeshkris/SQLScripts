@@ -1,0 +1,43 @@
+---- Kill all current connections
+
+
+--alter database xl_rpe_test1 set restricted_user with rollback immediate
+--go
+use master
+go
+
+DECLARE @cmdKill VARCHAR(50)
+
+DECLARE killCursor CURSOR FOR
+SELECT 'KILL ' + Convert(VARCHAR(5), p.spid)
+FROM master.dbo.sysprocesses AS p
+WHERE p.dbid = db_id('sweety')
+
+OPEN killCursor
+FETCH killCursor INTO @cmdKill
+
+WHILE 0 = @@fetch_status
+BEGIN
+EXECUTE (@cmdKill) 
+FETCH killCursor INTO @cmdKill
+END
+
+CLOSE killCursor
+DEALLOCATE killCursor 
+
+-----------------------
+
+exec master.dbo.xp_restore_database @database = N'sweety' ,
+@filename = N'sweety',
+@with = N'REPLACE',
+@filenumber = 1,
+@with = N'STATS = 10',
+@with = N'MOVE N''procede_dat1'' TO N''D:\MSSQL\Data\procede_qa1.mdf''',
+@with = N'MOVE N''procede_log1'' TO N''G:\MSSQL\Log\procede_qa1_log.ldf''',
+@affinity = 0,
+@logging = 0
+
+
+GO
+-=------------
+Exec master..xp_restore_filelistonly @filename=''

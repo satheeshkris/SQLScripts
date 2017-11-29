@@ -1,0 +1,28 @@
+Alter database [Actwins]
+SET Single_USER;
+go
+
+USe [ActWINS]
+go
+
+
+DECLARE @i int
+declare @j int
+
+  
+set @i=860975.00
+
+while @i >761485.00
+
+begin
+set @i=@i-50
+print @i
+dbcc shrinkfile(ActWins_Data,@i)
+end
+
+use master
+go
+
+Alter database [Actwins]
+SET MULTI_USER;
+go

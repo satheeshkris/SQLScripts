@@ -1,0 +1,5 @@
+sp_msforeachdb 'USE ?; dbcc checkdb'
+
+sp_msforeachdb 'USE ?;
+exec sp_updatestats;
+' 

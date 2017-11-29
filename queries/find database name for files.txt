@@ -1,0 +1,4 @@
+select DB_NAME(dbid),* from sysaltfiles where filename ='g:\mssql\log\destiny_snapshot_release_17_test1_log.ldf'
+
+
+select db_name(dbid),* from sysaltfiles where filename='g:\mssql\log\dw_xlre_ods_simp3_test1_frozen_log.ldf'

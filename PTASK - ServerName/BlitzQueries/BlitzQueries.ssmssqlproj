@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="BlitzQueries">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="LH7U05CG6260G3W:Ajay">
+          <Created>2017-10-15T14:22:26.649+05:30</Created>
+          <Type>SQL</Type>
+          <Server>LH7U05CG6260G3W</Server>
+          <UserName>Ajay</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Blitz.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>Blitz.sql</FullPath>
+        </FileNode>
+        <FileNode Name="BlitzCache.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>BlitzCache.sql</FullPath>
+        </FileNode>
+        <FileNode Name="blitzFirst.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>blitzFirst.sql</FullPath>
+        </FileNode>
+        <FileNode Name="BlitzIndex.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>BlitzIndex.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Blocking Tree.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>Blocking Tree.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Other queries.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>Other queries.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Perf Counters.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>Perf Counters.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Querying Deadlocks From System_Health XEvent.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>Querying Deadlocks From System_Health XEvent.sql</FullPath>
+        </FileNode>
+        <FileNode Name="What's running.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>What's running.sql</FullPath>
+        </FileNode>
+        <FileNode Name="whoIsActive.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LH7U05CG6260G3W:False:Ajay</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LH7U05CG6260G3W</AssociatedConnSrvName>
+          <AssociatedConnUserName>Ajay</AssociatedConnUserName>
+          <FullPath>whoIsActive.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

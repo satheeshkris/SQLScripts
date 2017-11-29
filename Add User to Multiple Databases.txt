@@ -1,0 +1,39 @@
+DECLARE	@SQLString nvarchar(500);
+DECLARE @DB_Name varchar(100);
+DECLARE	@Login_Name varchar(200);
+
+SET	@Login_Name = 'Sql_Ajay';
+
+DECLARE database_cursor CURSOR FOR 
+	SELECT name 
+	FROM MASTER.sys.sysdatabases
+	WHERE	name NOT IN ('master','tempdb','model','msdb');
+	
+OPEN database_cursor
+FETCH NEXT FROM database_cursor INTO @DB_Name
+
+WHILE @@FETCH_STATUS = 0 
+BEGIN 
+     SELECT @SQLString = '
+USE	[' + @DB_Name + ']
+GO
+CREATE USER [' + @Login_Name + '] FOR LOGIN [' + @Login_Name + ']
+GO
+USE	[' + @DB_Name + ']
+GO
+EXEC sp_addrolemember N''db_datareader'', N''' + @Login_Name + '''
+GO
+USE	[' + @DB_Name + ']
+GO
+EXEC sp_addrolemember N''db_datawriter'', N''' + @Login_Name + '''
+GO
+'; 
+     --EXEC sp_executesql @Command 
+     PRINT	@SQLString
+     PRINT	'';
+
+     FETCH NEXT FROM database_cursor INTO @DB_Name 
+END 
+
+CLOSE database_cursor 
+DEALLOCATE database_cursor 

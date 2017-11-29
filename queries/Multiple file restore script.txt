@@ -1,0 +1,47 @@
+---- Kill all current connections
+
+DECLARE @cmdKill VARCHAR(50)
+
+DECLARE killCursor CURSOR FOR
+SELECT 'KILL ' + Convert(VARCHAR(5), p.spid)
+FROM master.dbo.sysprocesses AS p
+WHERE p.dbid = db_id('xl_xcat_qa2')
+
+OPEN killCursor
+FETCH killCursor INTO @cmdKill
+
+WHILE 0 = @@fetch_status
+BEGIN
+EXECUTE (@cmdKill) 
+FETCH killCursor INTO @cmdKill
+END
+
+CLOSE killCursor
+DEALLOCATE killCursor 
+
+-----------------------
+
+exec master.dbo.xp_restore_database @database = N'xl_xcat_qa2' ,
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full9.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full8.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full7.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full12.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full11.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full10.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full3.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full2.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full1.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full6.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full5.sls',
+@filename = N'\\stass1413\K$\MSSQLDumps\dmp_xl_xcat_full4.sls',
+@filenumber = 1,
+@with = N'REPLACE',
+@with = N'STATS = 10',
+@with = N'MOVE N''xl_xcat_dev1_dat1'' TO N''D:\MSSQL\Data\xl_xcat_qa2_1.mdf''',
+@with = N'MOVE N''xl_xcat_dev1_log1'' TO N''G:\MSSQL\Log\xl_xcat_qa2_log_1.ldf''',
+@with = N'MOVE N''xl_xcat_dev1_dat2'' TO N''E:\MSSQL\Data\xl_xcat_qa2_1.ndf''',
+@affinity = 0,
+@logging = 0
+
+
+GO

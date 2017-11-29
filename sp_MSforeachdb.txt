@@ -1,0 +1,4 @@
+DECLARE @cmd1 VARCHAR(500)
+
+SET @cmd1 = 'if ''?'' NOT IN (SELECT	name FROM sys.databaseS WHERE IS_READ_ONLY=1)  DBCC CHECKDB([?])'
+EXEC sp_MSforeachdb @command1 = @cmd1 

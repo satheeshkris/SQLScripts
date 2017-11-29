@@ -1,0 +1,72 @@
+SELECT [rs].[destination_database_name], 
+[rs].[restore_date], 
+[bs].[backup_start_date], 
+[bs].[backup_finish_date], 
+[bs].[database_name] as [source_database_name], 
+[bmf].[physical_device_name] as [backup_file_used_for_restore]
+FROM msdb..restorehistory rs
+INNER JOIN msdb..backupset bs
+ON [rs].[backup_set_id] = [bs].[backup_set_id]
+INNER JOIN msdb..backupmediafamily bmf 
+ON [bs].[media_set_id] = [bmf].[media_set_id] 
+ORDER BY [rs].[restore_date] DESC 
+
+DROP TABLE [#FileHeaderonly]
+CREATE TABLE [#FileHeaderonly]
+(
+ [BackupName] [nvarchar](128) NULL,
+ [BackupDescription] [nvarchar](255) NULL,
+ [BackupType] [smallint] NULL,
+ [ExpirationDate] [datetime] NULL,
+ [Compressed] [bit] NULL,
+ [Position] [smallint] NOT NULL,
+ [DeviceType] [tinyint] NULL,
+ [UserName] [nvarchar](128) NULL,
+ [ServerName] [nvarchar](128) NULL,
+ [DatabaseName] [nvarchar](128) NULL,
+ [DatabaseVersion] [int] NULL,
+ [DatabaseCreationDate] [datetime] NULL,
+ [BackupSize] [numeric](20, 0) NULL,
+ [FirstLSN] [numeric](25, 0) NULL,
+ [LastLSN] [numeric](25, 0) NULL,
+ [CheckpointLSN] [numeric](25, 0) NULL,
+ [DatabaseBackupLSN] [numeric](25, 0) NULL,
+ [BackupStartDate] [datetime] NULL,
+ [BackupFinishDate] [datetime] NULL,
+ [SortOrder] [smallint] NULL,
+ [CodePage] [smallint] NULL,
+ [UnicodeLocaleId] [int] NULL,
+ [UnicodeComparisonStyle] [int] NULL,
+ [CompatibilityLevel] [tinyint] NULL,
+ [SoftwareVendorId] [int] NULL,
+ [SoftwareVersionMajor] [int] NULL,
+ [SoftwareVersionMinor] [int] NULL,
+ [SoftwareVersionBuild] [int] NULL,
+ [MachineName] [nvarchar](128) NULL,
+ [Flags] [int] NULL,
+ [BindingID] [uniqueidentifier] NULL,
+ [RecoveryForkID] [uniqueidentifier] NULL,
+ [Collation] [nvarchar](128) NULL,
+ [FamilyGUID] [uniqueidentifier] NULL,
+ [HasBulkLoggedData] [bit] NULL,
+ [IsSnapshot] [bit] NULL,
+ [IsReadOnly] [bit] NULL,
+ [IsSingleUser] [bit] NULL,
+ [HasBackupChecksums] [bit] NULL,
+ [IsDamaged] [bit] NULL,
+ [BeginsLogChain] [bit] NULL,
+ [HasIncompleteMetaData] [bit] NULL,
+ [IsForceOffline] [bit] NULL,
+ [IsCOpyOnly] [bit] NULL,
+ [FirstRecoveryForkID] [uniqueidentifier] NULL,
+ [ForkPointLSN] [numeric](25, 0) NULL,
+ [RecoveryModel] [nvarchar](60) NULL,
+ [DifferentialBaseLSN] [numeric](25, 0) NULL,
+ [DifferentialBaseGUID] [uniqueidentifier] NULL,
+ [BackupTypeDescription] [nvarchar](60) NULL,
+ [BackupSetGUID] [uniqueidentifier] NULL,
+ [CompressedBackupSize] [bigint] NULL,
+ [containment] [tinyint] NOT NULL
+) 
+INSERT [#FileHeaderonly] EXEC('RESTORE HEADERONLY FROM DISK = ''J:\WLDB1\WLDB1_backup_201409111100.bak''')
+SELECT * FROM [#FileHeaderonly]

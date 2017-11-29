@@ -1,0 +1,157 @@
+Backup/Restore – Native and LiteSpeed Scripts
+FULL – NATIVE 
+BACKUP DATABASE <DATABASE NAME>
+TO DISK = ‘<DATABASE NAME>\<DATABASE NAME>.BAK’
+– WITH COMPRESSION — FOR SQL SERVER 2008 
+FULL LITESPEED 
+execute master.dbo.xp_backup_database
+  @database = ‘<DATABASE NAME>’,
+  @filename = ‘<DATABASE NAME>\<DATABASE NAME>.BAK’,
+  @init = 1,
+  @compressionlevel = 4 
+DIFF – NATIVE 
+BACKUP DATABASE <DATABASE NAME>
+TO DISK = ‘<DATABASE NAME>\<DATABASE NAME>_DIFF.BAK’
+WITH DIFFERENTIAL
+–   ,COMPRESSION — FOR SQL SERVER 2008 
+DIFF – LITESPEED 
+execute master.dbo.xp_backup_database
+  @database = ‘<DATABASE NAME>’,
+  @filename = ‘<DATABASE NAME>\<DATABASE NAME>_Litespeed_DIFF.BAK’,
+  @init = 1,
+  @compressionlevel = 4,
+  @WITH =  DIFFERENTIAL 
+
+ 
+
+LOG NATIVE BACKUP 
+BACKUP LOG <DATABASE NAME>
+TO DISK = ‘<DATABASE NAME>\<DATABASE NAME>_LOG.BAK’
+–WITH COMPRESSION — FOR SQL SERVER 2008 
+LOG LITESPEED BACKUP 
+ EXEC master.dbo.xp_backup_log
+  @database = ‘<DATABASE NAME>’,
+  @filename = ‘<DATABASE NAME>\<DATABASE NAME>_Litespeed_LOG.BAK’,
+  @init = 1,
+  @compressionlevel = 4 
+To check the backup is Valid 
+RESTORE VERIFYONLY
+FROM DISK = ‘<DATABASE NAME>\<DATABASE NAME>.BAK’ 
+To get the Logical data and log file names and Physical file name 
+RESTORE FILELISTONLY
+FROM DISK = ‘<DATABASE NAME>\<DATABASE NAME>.BAK’ 
+To get the Logical data and log file names and Physical file name – Lite Speed 
+exec master.dbo.xp_restore_filelistonly
+  @filename = ‘<DATABASE NAME>\<DATABASE NAME>_Litespeed.BAK’ 
+
+ 
+
+Native Restore Script 
+RESTORE DATABASE <DATABASE NAME>_TEST
+FROM DISK = ‘<DATABASE NAME>\<DATABASE NAME>.BAK’
+WITH
+MOVE ‘<DATABASE NAME>’ TO ‘H:\MSSQL2008\DATA\<DATABASE NAME>.MDF’,
+MOVE ‘<DATABASE NAME>_LOG’ TO ‘K:\MSSQL2008\DATA\<DATABASE NAME>_TEST_LOG.LDF’  
+
+ 
+
+Restore – Lite Speed 
+exec master.dbo.xp_restore_log @database=’<DATABASE NAME>_Litespeed’
+, @filename = ‘<DATABASE NAME>\<DATABASE NAME>_Litespeed.BAK’
+, @with = ‘move “<DATABASE NAME>” to “K:\MSSQL2005\DATA\<DATABASE NAME>_Litespeed.mdf”‘
+, @with = ‘move “<DATABASE NAME>_log” to “K:\MSSQL2005\DATA\<DATABASE NAME>_Litespeed_log.ldf”‘ 
+
+ 
+
+Shrink only log files 
+USE [<DATABASE NAME>]
+GO
+
+SELECT * FROM SYS.SYSFILES — to get the logical file name of the log file
+GO
+
+DBCC SHRINKFILE (N’<DATABASE NAME>_log’)
+GO
+ 
+Shrinking Data file and Database, there will not be any change and after executing Shrink command we need to do update Stats. 
+
+ 
+
+Command SQL LiteSpeed 
+Backup Database EXEC master.dbo.xp_backup_database … 
+Backup Log EXEC master.dbo.xp_backup_log … 
+Backup FileGroup EXEC master.dbo.xp_backup_database … , @filegroup = ‘PRIMARY’ 
+Differential Backup EXEC master.dbo.xp_backup_database … , @with = ‘DIFFERENTIAL’ 
+Restore database EXEC master.dbo.xp_restore_database 
+Restore without recovery EXEC master.dbo.xp_restore_database…, @with=’NORECOVERY’ 
+Restore Log to a point in time EXEC master.dbo.xp_restore_log … ,@with =’RECOVERY’ , @with = ‘STOPBEFOREMARK= “LogMark”’ 
+Restore with move EXEC master.dbo.xp_restore_database… , @filename = … , @with = ‘MOVE “…” TO “…”‘ , @with = ‘MOVE “…” TO “…”‘ 
+Restore with verify only EXEC master.dbo.xp_restore_verifyonly @filename = … 
+
+ 
+
+Full Backup with Overwrite backup database mydb to disk=’d:\backup\mydb_full_20080828.bak’ with init 
+TLog Backup with Overwrite backup log mydb to disk=’d:\backup\mydb_tlog_20080828.bak’ with init 
+Litespeed Full Backup w Overwrite exec master..xp_backup_database @database = ‘mydb’, @filename = ‘d:\backup\mydb_tlog_20080828.bkl’, @init = 1 
+Litespeed Tlog Backup w Overwrite exec master..xp_backup_log @database = ‘mydb’, @filename = ‘d:\backup\mydb_tlog_20080828.bkl’, @init = 1 
+
+ 
+
+Get Backup History from MSDB select top 500
+a.backup_finish_date as dt,
+case a.[type] when ‘D’ then ‘database’ when ‘L’ then ‘tlog’ end as backuptype,
+a.server_name,
+a.database_name,
+b.physical_device_name
+from msdb.dbo.backupset a
+left join msdb.dbo.backupmediafamily b
+  on a.media_set_id = b.media_set_id
+order by a.backup_finish_date desc 
+
+ 
+
+Restore restore filelistonly from disk= ‘e:\restore\mydb_db_20080101.bak’
+go
+restore database mydbtest
+   from disk = ‘e:\restore\mydb_db_20080101.bak’
+   with move ‘mydb’ to ‘e:\data\mydb.mdf’,
+   move ‘mydb_log’ to ‘f:\logs\mydb_log.ldf’
+,norecovery
+go
+restore log mydbtest
+   from disk = ‘e:\restore\mydb_tlog_200511220000.trn’
+   with move ‘mydb’ to ‘e:\data\mydb.mdf’,
+   move ‘mydb_log’ to ‘f:\logs\mydb_log.ldf’
+,recovery
+go 
+
+ 
+
+Litespeed Restore exec master.dbo.xp_restore_filelistonly
+  @filename = ‘g:\restore\mydb_full.bkp’
+exec master.dbo.xp_restore_database @database=’mydb’
+, @filename = ‘g:\restore\mydb_full.bkp’
+, @with = ‘move “mydb_data” to “i:\mydb_data_watson.mdf”‘
+, @with = ‘move “mydb_log” to “f:\mydb_log_watson.ldf”‘
+, @with = ‘norecovery’
+exec master.dbo.xp_restore_log @database=’mydb’
+, @filename = ‘g:\restore\mydb_full.bkp’
+, @with = ‘move “mydb_data” to “i:\mydb_data_watson.mdf”‘
+, @with = ‘move “mydb_log” to “f:\mydb_log_watson.ldf”‘
+, @with = ‘recovery’ 
+
+ 
+
+Restore History from MSDB select b.physical_device_name, c.restore_date, c.destination_database_name, c.user_name, c.restore_type
+from msdb.dbo.backupset a
+left join msdb.dbo.backupmediafamily b
+  on a.media_set_id = b.media_set_id
+join msdb.dbo.restorehistory c
+  on a.backup_set_id = c.backup_set_id
+order by c.restore_date 
+
+ 
+
+Database Integrity Check declare @return int
+exec @return = sp_executesql n’dbcc checkdb(”mydb”)’
+if @return <> 0 raiserror (‘database corruption detected’, 16, 1) 

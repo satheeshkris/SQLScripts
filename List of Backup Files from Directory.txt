@@ -1,0 +1,50 @@
+/*	OUTPUT
+SNO		DB_NAME		BACKUP_FILE_PATH
+------	----------	--------------------
+1		TSQL2012	F:\Backups\TSQL2012_Extra.bak
+2		OhOh		F:\Backups\OhOh\OhOh_backup_2014_11_21_132124_9524655.bak
+3		TSQL2012	F:\Backups\TSQL2012\TSQL2012_backup_2014_11_21_132124_8899655.bak
+*/
+SET NOCOUNT ON;
+DECLARE
+       @BasePath varchar(1000)
+      ,@Path varchar(1000)
+      ,@FullPath varchar(2000)
+      ,@Id int;
+
+--This is your starting point.
+SET @BasePath = 'F:\Backups';
+
+DECLARE @DirectoryTree TABLE(
+       id int IDENTITY(1,1)
+      ,fullpath varchar(2000)
+      ,subdirectory nvarchar(512)
+      ,depth int
+      ,isfile bit);
+
+DECLARE @BackupFileList TABLE( id int IDENTITY(1,1), BackupFile VARCHAR(2000) );
+
+--Populate the table using the initial base path.
+INSERT @DirectoryTree (subdirectory,depth,isfile) EXEC master.sys.xp_dirtree @BasePath,1,1;
+
+UPDATE @DirectoryTree SET fullpath = @BasePath + '\' + subdirectory;
+INSERT INTO @BackupFileList SELECT fullpath FROM @DirectoryTree WHERE isfile = 1;
+DELETE FROM @DirectoryTree WHERE isfile = 1;
+
+--Loop through the table as long as there are still folders to process.
+WHILE EXISTS (SELECT id FROM @DirectoryTree WHERE isfile = 0)
+BEGIN
+
+	SELECT TOP (1) @Id = id, @BasePath = fullpath FROM @DirectoryTree WHERE isfile = 0;
+	
+	INSERT @DirectoryTree (subdirectory,depth,isfile) EXEC master.sys.xp_dirtree @BasePath,1,1;
+	UPDATE @DirectoryTree SET fullpath = @BasePath + '\' + subdirectory WHERE id = @@IDENTITY;
+	--Delete the processed folder.
+    DELETE FROM @DirectoryTree WHERE id = @Id;
+END;
+
+--Output the results.
+INSERT INTO @BackupFileList SELECT fullpath FROM @DirectoryTree WHERE isfile = 1;
+SELECT * from @BackupFileList;
+
+

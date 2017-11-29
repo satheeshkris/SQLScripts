@@ -1,0 +1,11 @@
+bcp dw_xli_staging_shared.dbo.t_gl_xl_h_account out d:\test.txt -Sstadb1340Q\stadb1340Q -T -c
+
+bcp dw_xli.dbo.t_trn_trans_src_keymap out M:\HGUI-8W9QZ6\test.txt -Sstadb1336Q\stadb1336Q -T -c
+
+bcp dw_xli.dbo.t_trn_trans_src_keymap in J:\HGUI-8W9QZ6\test.txt -SSTADB0142D\STADB0142D -T -c -b50000
+
+
+
+
+
+

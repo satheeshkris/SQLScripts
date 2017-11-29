@@ -1,0 +1,37 @@
+Check details of one backup
+-------------------------------------------
+use msdb
+go
+
+SELECT BS.SERVER_NAME,BS.DATABASE_NAME,BS.BACKUP_START_DATE,BS.BACKUP_FINISH_DATE,BMF.PHYSICAL_DEVICE_NAME,BS.BACKUP_SIZE
+FROM BACKUPSET BS
+INNER JOIN BACKUPMEDIASET BMS ON BMS.MEDIA_SET_ID=BS.MEDIA_SET_ID
+INNER JOIN BACKUPMEDIAFAMILY BMF ON BMS.MEDIA_SET_ID=BMF.MEDIA_SET_ID
+WHERE BS.BACKUP_FINISH_DATE>=GETDATE()-1 AND BMF.DEVICE_TYPE=7
+and database_name='xl_cdca'
+ORDER BY 2
+----------------------------------------------------
+
+
+Check Details of all backup on server
+----------------------------------------------------
+
+use msdb
+go
+
+SELECT BS.SERVER_NAME,BS.DATABASE_NAME,BS.BACKUP_FINISH_DATE,BMF.PHYSICAL_DEVICE_NAME,BS.BACKUP_SIZE
+FROM BACKUPSET BS
+INNER JOIN BACKUPMEDIASET BMS ON BMS.MEDIA_SET_ID=BS.MEDIA_SET_ID
+INNER JOIN BACKUPMEDIAFAMILY BMF ON BMS.MEDIA_SET_ID=BMF.MEDIA_SET_ID
+WHERE BS.BACKUP_FINISH_DATE>=GETDATE()-1 AND BMF.DEVICE_TYPE=7
+and database_name not in ('tempdb')
+ORDER BY 2
+
+-----------------------------------------------
+
+
+select * from sysaltfiles  where filename='d:\MSSQL\Data\dw_xlre_release17_fft_test1_dat36.ndf'
+select DB_NAME('20')
+sp_helpdb dw_xlre_ceded_acct_rule_parallel_test1
+
+http://support-gdms/

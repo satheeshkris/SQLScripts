@@ -1,0 +1,6 @@
+sp_validatelogins
+
+sp_change_users_login 'report'
+
+
+sp_change_users_login 'Auto_fix', 'username'

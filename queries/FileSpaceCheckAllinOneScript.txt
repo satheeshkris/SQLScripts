@@ -1,0 +1,45 @@
+SET NOCOUNT ON
+DECLARE @DBName varchar(100)
+DECLARE @FilegroupName as varchar(30)
+DECLARE @TargetPct as int
+
+--Specify Database Name here
+SET @DBName = 'dw_xli'
+
+use dw_xli
+
+--Specify Filegroup Name here
+Set @FilegroupName='PRIMARY'
+
+--Specify Database Target Free Space (In Percentage)
+Set @TargetPct=13
+
+CREATE TABLE #tbldiskSpace
+(
+driveName VARCHAR(3),
+freeSpace FLOAT
+)
+
+INSERT INTO #tbldiskSpace EXEC master..XP_FixedDrives
+
+EXEC ('use '+@DBName)                                  
+select
+NAME = ltrim(rtrim(left(a.name,60))),[FILE_SIZE_MB] = convert(decimal(12,2),round(a.size/128.000,2)),
+[DriveName]=SUBSTRING(a.filename,1,1),
+[DriveFreeSpace(MB)]=(select freespace FROM #tbldiskSpace WHERE driveName=SUBSTRING(a.filename,1,1)),
+[DBSpaceFree(%)] =convert(decimal(12,2),round((a.size-fileproperty(a.name,'SpaceUsed'))/128.000,2)/round(a.size/128.000,2)*100),[ReqdDBSpace(MB)]=
+(convert(decimal(12,0),round(a.size/128.000,2)*@TargetPct/100))-(convert(decimal(12,0),round((a.size-fileproperty(a.name,'SpaceUsed'))/128.000,2))),
+CASE WHEN a.growth = 0 THEN LTRIM(STR(a.growth * 8.0 / 1024,10,1)) + ' MB, ' ELSE 'By ' + CAST(a.growth AS VARCHAR) + ' percent, ' END + CASE WHEN a.maxsize= -1 THEN 'unrestricted growth' ELSE 'restricted growth to ' + LTRIM(STR(a.maxsize * 8.0 / 1024,10,1)) + ' MB' END AS Autogrow,
+AlterScript='Alter database ' + DB_NAME() + ' MODIFY FILE (NAME= ''' + ltrim(rtrim(left(a.name,60))) + ''',SIZE = ' +  CAST((convert(decimal(12,0),round(a.size/128.000,2)))+((convert(decimal(12,0),round(a.size/128.000,2)*14/100))-(convert(decimal(12,0),round((a.size-fileproperty(a.name,'SpaceUsed'))/128.000,2)))) as varchar) + ' MB)',
+[SPACE_USED_MB] = convert(decimal(12,2),round(fileproperty(a.name,'SpaceUsed')/128.000,2)),[FREE_SPACE_MB] = convert(decimal(12,2),round((a.size-fileproperty(a.name,'SpaceUsed'))/128.000,2)),
+[SPACE_USED_%] =convert(decimal(12,2),round(fileproperty(a.name,'SpaceUsed')/128.000,2)/round(a.size/128.000,2)*100),
+FILENAME = ltrim(rtrim(left(a.filename,60)))
+from      dbo.sysfiles a, dbo.sysfilegroups g
+where a.groupid=g.groupid
+and g.groupname=@FilegroupName
+order by a.groupid
+
+DROP TABLE #tbldiskSpace
+
+
+

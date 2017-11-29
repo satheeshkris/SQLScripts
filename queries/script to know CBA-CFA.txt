@@ -1,0 +1,5 @@
+-- This query needs to be run on stadb1001\stadb1001---
+
+select distinct [segment],[Application Name],[is CFA],[IS CBA] from dms_cmg.dbo.v_get_gdms_application_details
+
+where [application name]='Enterprise IT'

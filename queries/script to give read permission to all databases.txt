@@ -1,0 +1,33 @@
+DECLARE csr CURSOR
+READ_ONLY
+FOR select name from sysdatabases
+ where name not in ('Admin','master','AirAreaCode','msdb','model','pubs','northwind','tempdb','AddressServer_Tiger','AirCl2Ind','AirCT2Ind','AirCt2AreaCode')
+  
+   and name not like 'ILC%'
+   and name not like 'IED%'
+
+DECLARE @name varchar(64),
+      @stext varchar(1024)
+OPEN csr
+
+FETCH NEXT FROM csr INTO @name
+WHILE (@@fetch_status <> -1)
+BEGIN
+      IF (@@fetch_status <> -2)
+      BEGIN
+            Select @stext = 'use [' +@name+']'+
+            --;if exists (' +
+                       --' Select 1 from dbo.sysobjects where id = object_id(''[dbo].[rmsver]'')' +
+                       --' and OBJECTPROPERTY(id, ''IsUserTable'') = 1)' +
+                       --' if exists (select 1 from rmsver where dbname = ''Air%'')' +
+                       --' if not exists (select ''X'' from sysusers where name = ''USA\XL UG Citrix XL Re XCat Dev'')' +
+                       ' exec sp_grantdbaccess ''USA\XL UG Citrix XL Re XCat Dev'', ''USA\XL UG Citrix XL Re XCat Dev''' +
+                       ' exec sp_addrolemember ''db_datareader'', ''USA\XL UG Citrix XL Re XCat Dev'''
+            exec (@stext)
+      END
+      FETCH NEXT FROM csr INTO @name
+END
+
+CLOSE csr
+DEALLOCATE csr
+GO

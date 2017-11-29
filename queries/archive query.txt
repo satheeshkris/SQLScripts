@@ -1,0 +1,12 @@
+use gdms_archiving_tool
+go
+
+select * from t_gdms_archive_tool_logs
+where log_txt like '%error%' 
+order by log_time desc
+
+use gdms_archiving_tool
+
+select archive_file_name from t_gdms_arcive_tool_archive_history
+
+select row_id,log_txt,log_time from t_gdms_archive_tool_logs

@@ -1,0 +1,1 @@
+backup database Pratyush on disk='D:\Foldername\native_backup_pratyush.bak'

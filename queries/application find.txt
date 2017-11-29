@@ -1,0 +1,235 @@
+ 
+
+Below is the list of application with CBA\CFA details. You can use below query to check the status for the same against any application on STADB1001\STADB1001.
+
+ 
+
+select distinct [segment],[Application Name],[is CFA],[IS CBA] from dms_cmg.dbo.v_get_gdms_application_details
+
+where [application name]='XL Re Life Cessions'
+
+ 
+
+Segment
+ Application Name
+ CFA
+ CBA
+ 
+Corporate / Shared Services
+ Financial Data Repository (FDR)
+ No
+ Yes
+ 
+Insurance
+ ARTS
+ Yes
+ Yes
+ 
+Insurance
+ BizTalk
+ Yes
+ Yes
+ 
+Insurance
+ Diva
+ No
+ Yes
+ 
+Insurance
+ GAPS
+ No
+ Yes
+ 
+Insurance
+ Genius MIS
+ Yes
+ Yes
+ 
+Insurance
+ Genius MIS (US)
+ Yes
+ Yes
+ 
+Insurance
+ Global Claim System (GCS)
+ Yes
+ Yes
+ 
+Insurance
+ MIU Database
+ Yes
+ Yes
+ 
+Insurance
+ ODS WINS
+ Yes
+ Yes
+ 
+Insurance
+ Phoenix
+ Yes
+ Yes
+ 
+Insurance
+ ProCede
+ Yes
+ Yes
+ 
+Insurance
+ RAIS
+ Yes
+ Yes
+ 
+Insurance
+ ReservePro
+ Yes
+ Yes
+ 
+Insurance
+ Stamford Genius
+ Yes
+ Yes
+ 
+Insurance
+ Subscribe
+ Yes
+ Yes
+ 
+Insurance
+ WINS
+ Yes
+ Yes
+ 
+Insurance
+ XL Calligo
+ Yes
+ Yes
+ 
+Insurance
+ XL Marine Cargo
+ No
+ Yes
+ 
+Insurance
+ XL Surety Bond
+ No
+ Yes
+ 
+Insurance
+ XLDP WebApp
+ Yes
+ Yes
+ 
+Insurance
+ XLI Commercial Intellisys (CI)
+ No
+ Yes
+ 
+Insurance
+ XLI Data Warehouse (IDW)
+ Yes
+ Yes
+ 
+Insurance
+ XLI Financial Reporting and Controls (XLI-FR&C)
+ Yes
+ Yes
+ 
+Insurance
+ XLI Roundtable
+ No
+ Yes
+ 
+Insurance
+ XLI Underwritingworkstation
+ Yes
+ Yes
+ 
+Insurance
+ XLLM ODS
+ Yes
+ Yes
+ 
+Insurance
+ Zurich Genius
+ Yes
+ Yes
+ 
+Reinsurance
+ Bermuda IRIS Production
+ Yes
+ Yes
+ 
+Reinsurance
+ Destiny
+ Yes
+ Yes
+ 
+Reinsurance
+ London IRIS
+ Yes
+ Yes
+ 
+Reinsurance
+ Singapore IRIS Production
+ Yes
+ Yes
+ 
+Reinsurance
+ TAI.Net
+ No
+ Yes
+ 
+Reinsurance
+ XLRe Am Primary
+ Yes
+ Yes
+ 
+Reinsurance
+ XLRe Data Warehouse (RDW)
+ Yes
+ Yes
+ 
+Reinsurance
+ XLRe Life SICSNT
+ Yes
+ Yes
+ 
+Reinsurance
+ XLRe RAPAR
+ No
+ Yes
+ 
+Shared Services - IT
+ Autosys
+ No
+ Yes
+ 
+Shared Services - IT
+ MIIS
+ No
+ Yes
+ 
+Shared Services - IT
+ Oracle CoreID
+ No
+ Yes
+ 
+Shared Services - IT
+ Unicenter
+ No
+ Yes
+ 
+Shared Services - IT
+ XL Citrix
+ No
+ Yes
+ 
+Shared Services - IT
+ XL Net Portal
+ No
+ Yes
+ 
+
+ 
+

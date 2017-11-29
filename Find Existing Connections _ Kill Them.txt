@@ -1,0 +1,21 @@
+SELECT 
+    DB_NAME(dbid) as DBName, 
+    COUNT(dbid) as NumberOfConnections,
+    loginame as LoginName
+    ,spid 
+FROM
+    sys.sysprocesses
+WHERE 
+    dbid > 0
+AND	    DB_NAME(dbid) = 'DMI_SA'
+GROUP BY 
+    dbid, loginame, spid
+;
+
+/*	
+	kill 57
+*/	
+
+
+
+--Kill sps in decreasing order

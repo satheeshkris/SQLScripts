@@ -1,0 +1,3 @@
+update msdb.dbo.sysssispackages
+set ownersid = (select sid from sys.syslogins where loginname = 'sa')
+where name ='BackupDB'

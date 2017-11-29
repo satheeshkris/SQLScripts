@@ -1,0 +1,43 @@
+exec master..xp_cmdshell 'systeminfo'
+
+
+sp_configure  xp_cmdshell,1
+reconfigure WITH override
+
+
+
+
+
+
+select serVERPROPERTY('isclustered')
+go
+
+xp_fixeddrives
+go
+
+
+
+select serverproperty('edition'), serverproperty('productversion'),serverproperty('productlevel')
+go
+select @@serverNAME
+go
+
+sp_helpdb
+go
+
+
+
+
+
+
+select * from sysdatabases
+
+xp_readeerrorlog
+
+
+
+sp_helpdb
+
+
+
+sp_helpfile

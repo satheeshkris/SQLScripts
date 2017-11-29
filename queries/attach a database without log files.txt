@@ -1,0 +1,2 @@
+sp_attach_single_file_db N'EXT_LU_AXA_WS_R13_RDM', N'D:\MSSQL\Data\EXT_LU_AXA_WS_R13_RDM.mdf'
+GO

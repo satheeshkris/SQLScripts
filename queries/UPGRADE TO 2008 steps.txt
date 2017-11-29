@@ -1,0 +1,200 @@
+1.DBCC CHECKDB (toscane)
+2.DBCC UPDATEUSAGE
+
+
+DBCC UPDATEUSAGE: Usage counts updated for table 'DOCUMENT' (index 'PK_DOCUMENT', partition 1):
+        USED pages (LOB Data): changed from (418) to (432) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'FOURCHE' (index 'PK_FOURCHE', partition 1):
+        RSVD pages (In-row Data): changed from (16) to (17) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'PAGE' (index 'PK_PAGE', partition 1):
+        USED pages (LOB Data): changed from (1163) to (1208) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'RUBRIQUE' (index 'PK_RUBRIQUE', partition 1):
+        RSVD pages (In-row Data): changed from (136) to (137) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'BALANCE' (index 'PK_BALANCE', partition 1):
+        RSVD pages (In-row Data): changed from (336) to (337) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'ECRITURE' (index 'PK_ECRITURE', partition 1):
+        RSVD pages (In-row Data): changed from (1408) to (1409) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'PAGESOC' (index 'PK_PAGESOC', partition 1):
+        RSVD pages (In-row Data): changed from (112) to (113) pages.
+        USED pages (LOB Data): changed from (2376) to (12895) pages.
+        RSVD pages (LOB Data): changed from (13020) to (13017) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'VARIABLESOCIETE' (index 'PK_VARIABLESOCIETE', partition 1):
+        RSVD pages (In-row Data): changed from (16) to (17) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'RACVIRTUALDISK' (index 'PK_RACVIRTUALDISK', partition 1):
+        RSVD pages (In-row Data): changed from (16) to (17) pages.
+        USED pages (LOB Data): changed from (3878) to (9237) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'RACVIRTUALDISK' (index 'U_RACVIRTUALDISK_1', partition 1):
+        RSVD pages (In-row Data): changed from (8) to (9) pages.
+DBCC UPDATEUSAGE: Usage counts updated for table 'BOITEENVOI' (index 'PK_BOITEENVOI', partition 1):
+        USED pages (LOB Data): changed from (79) to (404) pages.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+
+
+
+
+DBCC results for 'Toscane'.
+Service Broker Msg 9675, State 1: Message Types analyzed: 14.
+Service Broker Msg 9676, State 1: Service Contracts analyzed: 6.
+Service Broker Msg 9667, State 1: Services analyzed: 3.
+Service Broker Msg 9668, State 1: Service Queues analyzed: 3.
+Service Broker Msg 9669, State 1: Conversation Endpoints analyzed: 0.
+Service Broker Msg 9674, State 1: Conversation Groups analyzed: 0.
+Service Broker Msg 9670, State 1: Remote Service Bindings analyzed: 0.
+Service Broker Msg 9605, State 1: Conversation Priorities analyzed: 0.
+DBCC results for 'sys.sysrscols'.
+There are 967 rows in 12 pages for object "sys.sysrscols".
+DBCC results for 'sys.sysrowsets'.
+There are 123 rows in 1 pages for object "sys.sysrowsets".
+DBCC results for 'sys.sysallocunits'.
+There are 148 rows in 2 pages for object "sys.sysallocunits".
+DBCC results for 'sys.sysfiles1'.
+There are 2 rows in 1 pages for object "sys.sysfiles1".
+DBCC results for 'sys.syspriorities'.
+There are 0 rows in 0 pages for object "sys.syspriorities".
+DBCC results for 'sys.sysfgfrag'.
+There are 2 rows in 1 pages for object "sys.sysfgfrag".
+DBCC results for 'sys.sysphfg'.
+There are 1 rows in 1 pages for object "sys.sysphfg".
+DBCC results for 'sys.sysprufiles'.
+There are 2 rows in 1 pages for object "sys.sysprufiles".
+DBCC results for 'sys.sysftinds'.
+There are 0 rows in 0 pages for object "sys.sysftinds".
+DBCC results for 'sys.sysowners'.
+There are 16 rows in 1 pages for object "sys.sysowners".
+DBCC results for 'sys.sysprivs'.
+There are 167 rows in 1 pages for object "sys.sysprivs".
+DBCC results for 'sys.sysschobjs'.
+There are 192 rows in 3 pages for object "sys.sysschobjs".
+DBCC results for 'sys.syscolpars'.
+There are 891 rows in 14 pages for object "sys.syscolpars".
+DBCC results for 'sys.sysnsobjs'.
+There are 1 rows in 1 pages for object "sys.sysnsobjs".
+DBCC results for 'sys.syscerts'.
+There are 0 rows in 0 pages for object "sys.syscerts".
+DBCC results for 'sys.sysxprops'.
+There are 17 rows in 1 pages for object "sys.sysxprops".
+DBCC results for 'sys.sysscalartypes'.
+There are 34 rows in 1 pages for object "sys.sysscalartypes".
+DBCC results for 'sys.systypedsubobjs'.
+There are 0 rows in 0 pages for object "sys.systypedsubobjs".
+DBCC results for 'sys.sysidxstats'.
+There are 291 rows in 4 pages for object "sys.sysidxstats".
+DBCC results for 'sys.sysiscols'.
+There are 814 rows in 4 pages for object "sys.sysiscols".
+DBCC results for 'sys.sysbinobjs'.
+There are 23 rows in 1 pages for object "sys.sysbinobjs".
+DBCC results for 'sys.sysaudacts'.
+There are 0 rows in 0 pages for object "sys.sysaudacts".
+DBCC results for 'sys.sysobjvalues'.
+There are 372 rows in 59 pages for object "sys.sysobjvalues".
+DBCC results for 'sys.sysclsobjs'.
+There are 18 rows in 1 pages for object "sys.sysclsobjs".
+DBCC results for 'sys.sysrowsetrefs'.
+There are 0 rows in 0 pages for object "sys.sysrowsetrefs".
+DBCC results for 'sys.sysremsvcbinds'.
+There are 0 rows in 0 pages for object "sys.sysremsvcbinds".
+DBCC results for 'sys.sysxmitqueue'.
+There are 0 rows in 0 pages for object "sys.sysxmitqueue".
+DBCC results for 'sys.sysrts'.
+There are 1 rows in 1 pages for object "sys.sysrts".
+DBCC results for 'sys.sysconvgroup'.
+There are 0 rows in 0 pages for object "sys.sysconvgroup".
+DBCC results for 'sys.sysdesend'.
+There are 0 rows in 0 pages for object "sys.sysdesend".
+DBCC results for 'sys.sysdercv'.
+There are 0 rows in 0 pages for object "sys.sysdercv".
+DBCC results for 'sys.syssingleobjrefs'.
+There are 157 rows in 1 pages for object "sys.syssingleobjrefs".
+DBCC results for 'sys.sysmultiobjrefs'.
+There are 226 rows in 1 pages for object "sys.sysmultiobjrefs".
+DBCC results for 'sys.sysguidrefs'.
+There are 0 rows in 0 pages for object "sys.sysguidrefs".
+DBCC results for 'sys.syscompfragments'.
+There are 0 rows in 0 pages for object "sys.syscompfragments".
+DBCC results for 'sys.sysftstops'.
+There are 0 rows in 0 pages for object "sys.sysftstops".
+DBCC results for 'sys.sysqnames'.
+There are 98 rows in 1 pages for object "sys.sysqnames".
+DBCC results for 'sys.sysxmlcomponent'.
+There are 99 rows in 1 pages for object "sys.sysxmlcomponent".
+DBCC results for 'sys.sysxmlfacet'.
+There are 112 rows in 1 pages for object "sys.sysxmlfacet".
+DBCC results for 'sys.sysxmlplacement'.
+There are 18 rows in 1 pages for object "sys.sysxmlplacement".
+DBCC results for 'sys.sysobjkeycrypts'.
+There are 0 rows in 0 pages for object "sys.sysobjkeycrypts".
+DBCC results for 'sys.sysasymkeys'.
+There are 0 rows in 0 pages for object "sys.sysasymkeys".
+DBCC results for 'sys.syssqlguides'.
+There are 0 rows in 0 pages for object "sys.syssqlguides".
+DBCC results for 'sys.sysbinsubobjs'.
+There are 3 rows in 1 pages for object "sys.sysbinsubobjs".
+DBCC results for 'sys.syssoftobjrefs'.
+There are 2 rows in 1 pages for object "sys.syssoftobjrefs".
+DBCC results for 'Toscane.CODEFOU'.
+There are 18 rows in 1 pages for object "Toscane.CODEFOU".
+DBCC results for 'Toscane.DOCUMENT'.
+There are 37 rows in 1 pages for object "Toscane.DOCUMENT".
+DBCC results for 'sys.queue_messages_114099447'.
+There are 0 rows in 0 pages for object "sys.queue_messages_114099447".
+DBCC results for 'sys.queue_messages_146099561'.
+There are 0 rows in 0 pages for object "sys.queue_messages_146099561".
+DBCC results for 'sys.queue_messages_178099675'.
+There are 0 rows in 0 pages for object "sys.queue_messages_178099675".
+DBCC results for 'sys.filestream_tombstone_210099789'.
+There are 0 rows in 0 pages for object "sys.filestream_tombstone_210099789".
+DBCC results for 'sys.syscommittab'.
+There are 0 rows in 0 pages for object "sys.syscommittab".
+DBCC results for 'Toscane.FOURCHE'.
+There are 1033 rows in 15 pages for object "Toscane.FOURCHE".
+DBCC results for 'Toscane.PAGE'.
+There are 247 rows in 4 pages for object "Toscane.PAGE".
+DBCC results for 'Toscane.PAGEDOC'.
+There are 374 rows in 3 pages for object "Toscane.PAGEDOC".
+DBCC results for 'Toscane.RUBRIQUE'.
+There are 25171 rows in 135 pages for object "Toscane.RUBRIQUE".
+DBCC results for 'Toscane.VARIABLEDOCUMENT'.
+There are 4 rows in 1 pages for object "Toscane.VARIABLEDOCUMENT".
+DBCC results for 'Toscane.BALANCE'.
+There are 14891 rows in 329 pages for object "Toscane.BALANCE".
+DBCC results for 'Toscane.ECRITURE'.
+There are 66660 rows in 1395 pages for object "Toscane.ECRITURE".
+DBCC results for 'Toscane.EXERCICE'.
+There are 134 rows in 1 pages for object "Toscane.EXERCICE".
+DBCC results for 'Toscane.JOURNAL'.
+There are 43 rows in 1 pages for object "Toscane.JOURNAL".
+DBCC results for 'Toscane.PAGESOC'.
+There are 12922 rows in 104 pages for object "Toscane.PAGESOC".
+DBCC results for 'Toscane.PERIODE'.
+There are 2 rows in 1 pages for object "Toscane.PERIODE".
+DBCC results for 'Toscane.PIECE'.
+There are 228 rows in 3 pages for object "Toscane.PIECE".
+DBCC results for 'Toscane.VARIABLESOCIETE'.
+There are 1024 rows in 15 pages for object "Toscane.VARIABLESOCIETE".
+DBCC results for 'Toscane.RACVIRTUALDISK'.
+There are 899 rows in 14 pages for object "Toscane.RACVIRTUALDISK".
+DBCC results for 'dtproperties'.
+There are 0 rows in 0 pages for object "dtproperties".
+DBCC results for 'Toscane.FOURCHETTEGROUPE'.
+There are 0 rows in 0 pages for object "Toscane.FOURCHETTEGROUPE".
+DBCC results for 'Toscane.PARAMEDI'.
+There are 0 rows in 0 pages for object "Toscane.PARAMEDI".
+DBCC results for 'Toscane.VISU_DOC'.
+There are 21 rows in 1 pages for object "Toscane.VISU_DOC".
+DBCC results for 'Toscane.BOITEENVOI'.
+There are 29 rows in 1 pages for object "Toscane.BOITEENVOI".
+DBCC results for 'Toscane.DROIT'.
+There are 5 rows in 1 pages for object "Toscane.DROIT".
+DBCC results for 'Toscane.SOCIETEREGIME'.
+There are 0 rows in 0 pages for object "Toscane.SOCIETEREGIME".
+DBCC results for 'Toscane.RESEAU'.
+There are 0 rows in 0 pages for object "Toscane.RESEAU".
+DBCC results for 'Toscane.PROFIL'.
+There are 5 rows in 1 pages for object "Toscane.PROFIL".
+DBCC results for 'Toscane.SOCIETE'.
+There are 8 rows in 1 pages for object "Toscane.SOCIETE".
+DBCC results for 'Toscane.VARIABLERACINE'.
+There are 111 rows in 2 pages for object "Toscane.VARIABLERACINE".
+CHECKDB found 0 allocation errors and 0 consistency errors in database 'Toscane'.
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+

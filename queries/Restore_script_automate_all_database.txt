@@ -1,0 +1,65 @@
+SET ANSI_PADDING  off
+declare @db varchar(100)
+declare @file_name varchar(500)
+declare @path varchar(500)
+set @path='k:\mssqldumps\'
+DECLARE @db_name nvarchar(255)
+
+DECLARE Cursor_restore cursor for
+
+SELECT NAME FROM master..sysdatabases where name  not in ('tempdb','distribution')
+
+OPEN Cursor_restore
+
+FETCH NEXT FROM Cursor_restore INTO @db_name
+
+WHILE (@@fetch_status = 0)
+
+BEGIN
+
+
+set nocount on
+
+
+
+set @db=@db_name
+
+set @file_name=@path+'dmp_'+@db+'_full.sls'
+
+--print @file_name
+
+--EXEC master.dbo.xp_restore_filelistonly      
+--         @filename = @file_name
+
+create table #restore(
+name varchar(200),
+filename varchar(1000)
+)
+insert into #restore
+select name,filename from master..sysaltfiles where dbid=db_id(@db)
+
+select '-------Restore script for '+@db+' Database--------'
+
+select 'EXEC master.dbo.xp_restore_database @database='''+@db+''',@filename='''+@file_name+''''  
+select ',@with=''move "'+name+'" to "'+ filename +'"'''from #restore
+select ', @with = ''replace'''
+
+
+
+drop table #restore
+
+
+
+
+
+FETCH NEXT FROM Cursor_restore INTO @db_name
+
+END
+
+CLOSE Cursor_restore
+
+DEALLOCATE Cursor_restore
+
+
+
+Go

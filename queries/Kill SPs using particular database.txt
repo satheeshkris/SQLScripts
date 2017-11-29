@@ -1,0 +1,26 @@
+---- Kill all current connections
+
+
+--alter database xl_rpe_test1 set restricted_user with rollback immediate
+--go
+use master
+go
+
+DECLARE @cmdKill VARCHAR(50)
+
+DECLARE killCursor CURSOR FOR
+SELECT 'KILL ' + Convert(VARCHAR(5), p.spid)
+FROM master.dbo.sysprocesses AS p
+WHERE p.dbid = db_id('sweety')
+
+OPEN killCursor
+FETCH killCursor INTO @cmdKill
+
+WHILE 0 = @@fetch_status
+BEGIN
+EXECUTE (@cmdKill) 
+FETCH killCursor INTO @cmdKill
+END
+
+CLOSE killCursor
+DEALLOCATE killCursor 

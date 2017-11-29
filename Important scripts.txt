@@ -1,0 +1,12 @@
+DBCC FREEPROCCACHE
+
+
+sp_helpdb 'FOMARomania'
+
+restore filelistonly from disk = 'I:\foma.bak'
+
+
+USE TRACE
+GO
+
+SELECT * INTO Trace_YO2EUSQL03_Sep_30 FROM ::fn_trace_gettable('E:\Ajay\SQL_Trace_HostDB\hostDB_Trace.trc', default)

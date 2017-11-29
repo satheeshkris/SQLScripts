@@ -1,0 +1,15 @@
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+exec admin.dbo.spu_start_sls_backup
+@BackupDir = 'B:\MSSQLDumps\stadb1340q\stadb1340Q\', 
+@BackupType = F, 
+@threads = 1, 
+@dbname = [globalwarehouse],
+@PerformDBCC = 0

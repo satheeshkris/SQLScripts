@@ -1,0 +1,2 @@
+EXECUTE master.sys.sp_MSforeachdb 'USE [?]; EXEC [sp_grantdbaccess] @loginame =[statdoc], @name_in_db =[statdoc]'  
+EXECUTE master.sys.sp_MSforeachdb 'USE [?]; EXEC [sp_addrolemember] @rolename = [db_xl_readers], @membername = [statdoc]'

@@ -1,0 +1,14 @@
+SELECT CAST(value AS TINYINT) FROM sys.configurations WHERE name = 'xp_cmdshell'
+
+-- To allow advanced options to be changed.
+EXEC sp_configure 'show advanced options', 1;
+GO
+-- To update the currently configured value for advanced options.
+RECONFIGURE;
+GO
+-- To disable the feature.
+EXEC sp_configure 'xp_cmdshell', 0;
+GO
+-- To update the currently configured value for this feature.
+RECONFIGURE;
+GO

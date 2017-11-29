@@ -1,0 +1,28 @@
+declare @Backup_File_Details table
+(
+    LogicalName          nvarchar(128),
+    PhysicalName         nvarchar(260),
+    [Type]               char(1),
+    FileGroupName        nvarchar(128),
+    Size                 numeric(20,0),
+    MaxSize              numeric(20,0),
+    FileID               bigint,
+    CreateLSN            numeric(25,0),
+    DropLSN              numeric(25,0),
+    UniqueID             uniqueidentifier,
+    ReadOnlyLSN          numeric(25,0),
+    ReadWriteLSN         numeric(25,0),
+    BackupSizeInBytes    bigint,
+    SourceBlockSize      int,
+    FileGroupID          int,
+    LogGroupGUID         uniqueidentifier,
+    DifferentialBaseLSN  numeric(25,0),
+    DifferentialBaseGUID uniqueidentifier,
+    IsReadOnl            bit,
+    IsPresent            bit,
+    TDEThumbprint        varbinary(32) -- remove this column if using SQL 2005
+)
+insert into @Backup_File_Details 
+exec('restore filelistonly from disk = ''F:\Backups\TSQL2012_TEST.bak''')
+
+SELECT * FROM @Backup_File_Details
